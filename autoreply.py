@@ -1,6 +1,8 @@
 from config import *
 import praw
-from pprint import pprint
+
+
+ooto_message = "Hello, r/cybersecurity is currently participating in a blackout and will not be accessible for 48h. Please monitor https://cybersecurity.page for updates, thanks!"
 
 reddit = praw.Reddit(
     client_id=praw_client_id,
@@ -11,17 +13,19 @@ reddit = praw.Reddit(
 
 subreddit = reddit.subreddit("cybersecurity")
 
-dedupe = []
-for message_bus in subreddit.mod.stream.modmail_conversations(state="inbox"):
-    message_id = message_bus.id
+replied_conversations = []
+for conversations in subreddit.mod.stream.modmail_conversations(state="inbox"):
+    conversation_id = conversations.id
 
-    if message_id in dedupe:
-        print(f"Skipped reply to {message_id} as autoreply already fired")
+    if conversation_id in replied_conversations:
+        print(f"Skipped reply to {conversation_id} as autoreply already fired")
         continue
 
-    message = subreddit.modmail(message_id, mark_read=True)
-    message.reply(body="Hello, r/cybersecurity is currently participating in a blackout and will not be accessible for 48h. Please monitor https://cybersecurity.page for updates, thanks!", author_hidden=True)
+    # want to do more to analyze or reply? here are the ModmailConversation docs:
+    # https://praw.readthedocs.io/en/stable/code_overview/models/modmailconversation.html
+    message = subreddit.modmail(conversation_id, mark_read=True)
+    message.reply(body=ooto_message, author_hidden=True)
     message.archive()
     
-    print(f"Replied to {message_id} and archived")
-    dedupe.append(message_id)
+    print(f"Replied to {conversation_id} and archived")
+    replied_conversations.append(conversation_id)
