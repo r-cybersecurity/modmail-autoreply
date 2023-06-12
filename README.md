@@ -12,6 +12,10 @@ Assumes you already have Python installed and are comfortable with basics.
 5. Edit the `ooto_message` on line 5 of `autoreply.py` with whatever text you want to autoreply to new messages with, and the `ooto_subreddit` on line 6 with what subreddit you want to monitor for messages
 6. Run `python3 autoreply.py` and the bot will leave your out-of-office/we-are-blackout reply for as long as the script is running
 
+### Advanced Start
+
+An example `fly.toml` defintion and `Dockerfile` are included for anyone interested in running this as a container or on Fly.io (where we run a number of our bots). Though it's late, so you'll have to work with those on your own.
+
 ### Quirks
 
 This bot will ignore ban appeals, moderator discussions, join requests, etc. to *try to* avoid disrupting other discussions. However if you have a long-lived conversation thread and someone makes a new reply, this bot won't care and will throw up the autoreply + archive.

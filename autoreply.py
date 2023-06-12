@@ -30,3 +30,4 @@ for conversations in subreddit.mod.stream.modmail_conversations(state="inbox"):
     
     print(f"Replied to {conversation_id} and archived")
     replied_conversations.append(conversation_id)
+exit(1)
