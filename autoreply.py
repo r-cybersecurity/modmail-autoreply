@@ -3,6 +3,7 @@ import praw
 
 
 ooto_message = "Hello, r/cybersecurity is currently participating in a blackout and will not be accessible for 48h. Please monitor https://cybersecurity.page for updates, thanks!"
+ooto_subreddit = "cybersecurity"
 
 reddit = praw.Reddit(
     client_id=praw_client_id,
@@ -11,7 +12,7 @@ reddit = praw.Reddit(
     user_agent="r-cybersecurity/modmail-autoreply",
 )
 
-subreddit = reddit.subreddit("cybersecurity")
+subreddit = reddit.subreddit(ooto_subreddit)
 
 replied_conversations = []
 for conversations in subreddit.mod.stream.modmail_conversations(state="inbox"):
