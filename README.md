@@ -1,6 +1,8 @@
 # modmail-autoreply
 For those times when you're out of the office for that 'unpaid volunteer' work you do for a for-profit company, this small script will auto-reply to new messages sent to your modmail inbox. You can customize it however you want trivially - it's only a handful of lines!
 
+This is an "opinionated" autoreply and *only autoreplies to generic modmail*, not join requests (disable those at Reddit's platform level if you don't want them), not ban appeals or other mod messages (humans should still handle these), etc.
+
 ### Quickstart
 
 Assumes you already have Python installed and are comfortable with basics.
@@ -18,8 +20,8 @@ An example `fly.toml` defintion and `Dockerfile` are included for anyone interes
 
 ### Quirks
 
-This bot will ignore ban appeals, moderator discussions, join requests, etc. to *try to* avoid disrupting other discussions. However if you have a long-lived conversation thread and someone makes a new reply, this bot won't care and will throw up the autoreply + archive.
+As mentioned, this bot will ignore ban appeals, moderator discussions, join requests, etc. to *try to* avoid disrupting other discussions. However if you have a long-lived conversation thread and someone makes a new reply, this bot won't care and will throw up the autoreply + archive.
 
 This bot attempts to *only reply to each conversation thread once*, so if there is a question not answered by your out-of-office message then people can reply and still reach through to moderators.
 
-The conversation thread deduplication is in-memory, so if you close and restart the script it will lose this memory. It also means the memory usage of the program could grow unbounded, however this is unlikely in practice unless your modmail is being *attacked*.
+The conversation thread deduplication is in-memory, so if you close and restart the script it will lose this memory. It also means the memory usage of the program could grow unbounded, however this is unlikely to be problematic in practice unless your modmail is being *attacked*.
