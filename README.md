@@ -20,6 +20,6 @@ An example `fly.toml` defintion and `Dockerfile` are included for anyone interes
 
 This bot will ignore ban appeals, moderator discussions, join requests, etc. to *try to* avoid disrupting other discussions. However if you have a long-lived conversation thread and someone makes a new reply, this bot won't care and will throw up the autoreply + archive.
 
-This bot and attempts to *only reply to each conversation thread once*, so if there is a question not answered by your out-of-office message then people can reply and still reach through to moderators.
+This bot attempts to *only reply to each conversation thread once*, so if there is a question not answered by your out-of-office message then people can reply and still reach through to moderators.
 
 The conversation thread deduplication is in-memory, so if you close and restart the script it will lose this memory. It also means the memory usage of the program could grow unbounded, however this is unlikely in practice unless your modmail is being *attacked*.
